@@ -1,64 +1,44 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
+ 
 class Guardarscreen extends StatelessWidget {
   const Guardarscreen({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Guardar")),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            width: 300,
-            child: formulario(context),
-          ),
-        ),
-      ),
-    );
+    return Scaffold(appBar: AppBar(), body: formulario(context));
   }
 }
-
-Widget formulario(BuildContext context) {
-  TextEditingController id = TextEditingController();
-  TextEditingController nombre = TextEditingController();
+ 
+Widget formulario(context) {
   TextEditingController placa = TextEditingController();
-  TextEditingController color = TextEditingController();
   TextEditingController marca = TextEditingController();
+  TextEditingController precio = TextEditingController();
+ 
+  return (Center(
+    child: Container(
+      width: 350,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(controller: placa),
+          TextField(controller: marca),
+          TextField(controller: precio),
+ 
+          ElevatedButton(onPressed: () => guardar(context, placa, marca, precio), child: Text("Guardar")),
 
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      TextField(
-        controller: id,
-        decoration: const InputDecoration(hintText: "ID"),
+          OutlinedButton(onPressed: () => Navigator.pushNamed(context, "/leer"), child: Text("leer"))
+        ],
       ),
-      const SizedBox(height: 15),
-      TextField(
-        controller: nombre,
-        decoration: const InputDecoration(hintText: "Nombre"),
-      ),
-      const SizedBox(height: 15),
-      TextField(
-        controller: placa,
-        decoration: const InputDecoration(hintText: "Placa"),
-      ),
-      const SizedBox(height: 15),
-      TextField(
-        controller: color,
-        decoration: const InputDecoration(hintText: "Color"),
-      ),
-      const SizedBox(height: 15),
-      TextField(
-        controller: marca,
-        decoration: const InputDecoration(hintText: "Marca"),
-      ),
-      const SizedBox(height: 20),
-      FilledButton.icon(
-        onPressed: () => Navigator.pushNamed(context, "/leer"),
-        label: const Text("Guardar"),
-        icon: const Icon(Icons.save),
-      ),
-    ],
-  );
+    ),
+  ));
+}
+
+Future<void> guardar (context, marca, placa, precio) async {
+DatabaseReference ref = FirebaseDatabase.instance.ref("autos/${placa.text}");
+
+await ref.set({
+  "marca": marca.text,
+  "precio":double.parse(precio.text)
+  });
 }

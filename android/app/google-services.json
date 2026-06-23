@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243899372514",
+    "project_id": "autonomamoviles",
+    "storage_bucket": "autonomamoviles.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243899372514:android:6cb6c5521d355806c8dfbb",
+        "android_client_info": {
+          "package_name": "com.example.app_12"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt0W9joQo40_PTtYAALtiLM6l7ZY5Ty9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
