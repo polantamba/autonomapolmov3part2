@@ -55,10 +55,8 @@ Widget lista() {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text("Placa: ${item['placa']}"),
-                          const SizedBox(height: 8),
                           Text("Marca: ${item['marca']}"),
-                          const SizedBox(height: 8),
-                          Text("Precio: \$${item['precio']}"),
+                          Text("Precio: ${item['precio']}"),
                         ],
                       ),
                       actions: [
